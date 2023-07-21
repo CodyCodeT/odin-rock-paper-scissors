@@ -8,54 +8,42 @@ function computerPlay() {
         comSelection = 'paper'
     }
 }
-function plySel() {
-    playerSelection = prompt("Rock, Paper, or Scissors?");
-    playerSelection = playerSelection.toLowerCase();
+function plySel(event) {
+    const button = event.target;
+    playerSelection = button.textContent.toLowerCase();
 }
 function playGame() {
     console.log(`Computer picked ${comSelection}`)
     console.log(`you picked ${playerSelection}`)
-  if (comSelection == 'scissors' && playerSelection == 'rock'){
-    
+  if (comSelection === playerSelection){
+        console.log(`It's a draw!`)
+
+} else if (
+    (comSelection == 'rock' && playerSelection == 'paper') ||
+    (comSelection == 'scissors' && playerSelection == 'rock') ||
+    (comSelection == 'paper' && playerSelection == 'scissors')
+){
     console.log(`You picked ${playerSelection} and it beats ${comSelection}, you win!`)
-  
-} else if (comSelection == 'scissors' && playerSelection == 'scissors' ){
-    
-    console.log(`It's a draw!`)
-  
-} else if (comSelection == 'scissors' && playerSelection == 'paper'){
-   
+} else {
     console.log(`Computer picked ${comSelection} and it beats ${playerSelection}, you lose!`)
-  
-} else if (comSelection == 'paper' && playerSelection == 'rock'){
-    
-    console.log(`Computer picked ${comSelection} and it beats ${playerSelection}, you lose`)
-  
-} else if (comSelection == 'paper' && playerSelection == 'paper'){
-    
-    console.log(`It's a draw!`)
+}}
 
-} else if (comSelection == 'paper' && playerSelection == 'scissors'){
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
 
-    console.log(`You picked ${playerSelection} and it beats ${comSelection}, you win!`)
+rockButton.addEventListener('click', plySel);
+paperButton.addEventListener('click', plySel);
+scissorsButton.addEventListener('click', plySel);
 
-} else if (comSelection == 'rock' && playerSelection == 'scissors'){
-
-    console.log(`Computer picked ${comSelection} and it beats ${playerSelection}, you lose`)
-
-} else if (comSelection == 'rock' && playerSelection == 'paper'){
-
-    console.log(`You picked ${playerSelection} and it beats ${comSelection}, you win!`)
-
-} else if (comSelection == 'rock' && playerSelection == 'rock'){
-
-    console.log(`It's a draw!`)
-
+document.addEventListener('click', function (e) {
+if (e.target.matches('button')) {
+    computerPlay();
+    playGame();
 }
-}
-
-for (let i=0;i<5; i++) {
-plySel();
-computerPlay();
-playGame();
-}
+})
+// for (let i=0;i<5; i++) {
+// plySel();
+// computerPlay();
+// playGame();
+// }
