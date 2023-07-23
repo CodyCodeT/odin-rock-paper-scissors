@@ -1,4 +1,4 @@
-let roundsPlayed = 0; // Add a variable to keep track of the rounds played
+let roundsPlayed = 1;
 
 function comSel() {
     choose = Math.floor(Math.random() * 3) + 1;
@@ -46,8 +46,20 @@ function playGame() {
 function game() {
     if (roundsPlayed < 5) {
         roundsPlayed++;
-        console.log(`Round ${roundsPlayed}`);
+        const round = document.querySelector('.round');
+        round.textContent = `Round ${roundsPlayed}`;
         comSel();
         playGame();
+    } else if (roundsPlayed === 5) {
+        comSel();
+        playGame();
+        const round = document.querySelector('.round');
+        round.textContent = `Game Over`;
+        const rockButton = document.querySelector('.rock');
+        const paperButton = document.querySelector('.paper');
+        const scissorsButton = document.querySelector('.scissors');
+        rockButton.removeEventListener('click', plyrSel);
+        paperButton.removeEventListener('click', plyrSel);
+        scissorsButton.removeEventListener('click', plyrSel);
     }
 }
