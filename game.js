@@ -1,4 +1,11 @@
+let playerScore = 0;
+let computerScore = 0;
 let roundsPlayed = 1;
+
+const result = document.querySelector('.result')
+const round = document.querySelector('.round');
+const playerScoreCounter = document.querySelector('.playerscore');
+const computerScoreCounter = document.querySelector('.computerscore');
 
 function comSel() {
     choose = Math.floor(Math.random() * 3) + 1;
@@ -31,35 +38,47 @@ function playGame() {
     console.log(`You picked ${playerSelection}`);
 
     if (comSelection === playerSelection) {
-        console.log(`It's a draw!`);
+        result.textContent = `Player picked ${playerSelection} and Computer picked ${comSelection} it's a draw!`;
     } else if (
         (comSelection === 'rock' && playerSelection === 'paper') ||
         (comSelection === 'scissors' && playerSelection === 'rock') ||
         (comSelection === 'paper' && playerSelection === 'scissors')
     ) {
-        console.log(`You picked ${playerSelection} and it beats ${comSelection}, you win!`);
+        result.textContent = `You picked ${playerSelection} and it beats ${comSelection}, you win!`;
+        playerScore++;
     } else {
-        console.log(`Computer picked ${comSelection} and it beats ${playerSelection}, you lose!`);
+        result.textContent = `Computer picked ${comSelection} and it beats ${playerSelection}, you lose!`;
+        computerScore++;
+    }
+    playerScoreCounter.textContent = `Player Score: ${playerScore}`;
+    computerScoreCounter.textContent = `Computer Score: ${computerScore}`;
+}
+function gameResult() {
+    if (playerScore > computerScore) {
+        round.textContent = `You won the game!`;
+    } else if (playerScore < computerScore) {
+        round.textContent = `You lost the game!`;
+    } else {
+        round.textContent = `It's a draw!`;
     }
 }
 
 function game() {
     if (roundsPlayed < 5) {
         roundsPlayed++;
-        const round = document.querySelector('.round');
         round.textContent = `Round ${roundsPlayed}`;
         comSel();
         playGame();
     } else if (roundsPlayed === 5) {
+        roundsPlayed++
         comSel();
         playGame();
-        const round = document.querySelector('.round');
-        round.textContent = `Game Over`;
-        const rockButton = document.querySelector('.rock');
-        const paperButton = document.querySelector('.paper');
-        const scissorsButton = document.querySelector('.scissors');
+        gameResult();
         rockButton.removeEventListener('click', plyrSel);
         paperButton.removeEventListener('click', plyrSel);
-        scissorsButton.removeEventListener('click', plyrSel);
+        scissorsButton.removeEventListener('click', plyrSel);   
+    } else if (roundsPlayed === 6) {
+        
     }
+    
 }
