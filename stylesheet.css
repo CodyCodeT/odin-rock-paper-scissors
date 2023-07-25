@@ -5,12 +5,20 @@
     font-family: 'Roboto', sans-serif;
 }
 body {
+    background-color: gray;
+}
+div.game {
     display: grid;
     align-items: center;
     justify-content: center;
-    background-color: #C6CCB2;
-    gap: 15px;
-    padding-top: 15px;
+    gap: 20px;
+    /* padding-top: 15px; */
+    grid-template-columns: 1fr;
+    grid-template-rows: 75px 50px 50px 25px;
+}
+div.score {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 button {
     background-color: #BF4E30;
@@ -21,7 +29,7 @@ button {
     width: 100px;
     font-size: 20px;
     box-shadow: rgba(0, 0, 0, .6) 2px 2px 2px;
-
+    align-self: center;
     &:hover {
         background-color: #E8A87C;
         cursor: pointer;
@@ -31,5 +39,9 @@ h1,
 h2,
 p {
     text-align: center;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
+}
+div.buttons {
+    align-items: center;
+    justify-self: center;
 }
